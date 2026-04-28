@@ -89,17 +89,44 @@
                 transform: translateY(0);
             }
         }
+        /* NOWA REGUŁA: Wymusza wysokość sekcji Hero na 100% okna przeglądarki */
+        #top {
+            height: 100vh;
+        }
+        /* NOWA ANIMACJA: Animowane podkreślenie dla linków w nawigacji */
+        .nav-link {
+            position: relative; /* Konieczne do pozycjonowania pseudo-elementu */
+            padding-bottom: 6px; /* Robi trochę miejsca pod tekstem na linię */
+        }
+
+        .nav-link::after {
+            content: ''; /* Pseudo-elementy muszą mieć pusty content */
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px; /* Grubość linii */
+            background-color: #1d4ed8; /* Główny kolor marki */
+            transform: scaleX(0); /* Domyślnie linia jest schowana (skala 0) */
+            transform-origin: center; /* Animacja rozchodzi się od środka */
+            transition: transform 0.3s ease-out; /* Płynność animacji */
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1); /* Po najechaniu linia rozszerza się do pełnej szerokości */
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-gray-50">
 
-    <!-- NAWIGACJA -->
+<!-- NAWIGACJA -->
     <nav class="fixed w-full bg-white shadow-md z-50 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo -->
                 <a href="#top" class="flex-shrink-0 flex items-center cursor-pointer">
-                    <i class="fa-solid fa-shield-halved text-brand text-3xl mr-3"></i>
+                    <!-- POPRAWKA: Upewniamy się, że ścieżka do logo jest prawidłowa -->
+                    <img src="favicon.png" alt="Logo Ubezpieczenia Marcin Baran" class="h-10 mr-3">
                     <div class="flex flex-col">
                         <span class="font-heading font-bold text-xl text-brand-dark leading-tight">Marcin Baran</span>
                         <span class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Ubezpieczenia</span>
@@ -108,17 +135,16 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#o-firmie" class="text-gray-600 hover:text-brand font-medium transition-colors">O firmie</a>
-                    <a href="#jak-dzialamy" class="text-gray-600 hover:text-brand font-medium transition-colors">Jak działamy?</a>
-                    <a href="#oferta" class="text-gray-600 hover:text-brand font-medium transition-colors">Oferta</a>
-                    <a href="#dlaczego-my" class="text-gray-600 hover:text-brand font-medium transition-colors">Dlaczego my</a>
-                    <a href="#kontakt" class="text-gray-600 hover:text-brand font-medium transition-colors">Kontakt</a>
+                    <a href="#o-firmie" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">O firmie</a>
+                    <a href="#jak-dzialamy" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Jak działamy?</a>
+                    <a href="#oferta" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Oferta</a>
+                    <a href="#dlaczego-my" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Dlaczego my</a>
+                    <a href="#kontakt" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Kontakt</a>
                     
                     <a href="tel:+48600872523" class="flex items-center bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-2.5 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                         <i class="fa-solid fa-phone mr-2"></i> Zadzwoń
                     </a>
                 </div>
-
                 <!-- Przycisk menu mobilnego -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand focus:outline-none p-2">
@@ -140,26 +166,26 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <header id="top" class="hero-bg min-h-screen flex items-center relative pt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center lg:text-left">
-            <div class="max-w-3xl animate-hero">
+<!-- HERO SECTION -->
+    <header id="top" class="hero-bg h-screen flex items-center justify-center relative pt-20 text-center">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="animate-hero">
                 <span class="inline-block py-2 px-5 rounded-full text-blue-100 font-semibold text-base mb-6 border border-blue-400/60 shadow-sm" style="background-color: rgba(29, 78, 216, 0.5);">
                     Mobilny Agent Ubezpieczeniowy
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-tight mb-6">
                     Ubezpieczenia bez wychodzenia z domu.<br><span class="text-brand-accent">Dojedziemy do Ciebie!</span>
                 </h1>
-                <p class="text-lg sm:text-xl text-gray-200 mb-6 font-light">
+                <p class="text-lg sm:text-xl text-gray-200 mb-6 font-light max-w-2xl mx-auto">
                     Oszczędzaj swój cenny czas. Porównamy dla Ciebie oferty kilkunastu towarzystw i załatwimy formalności w dogodnym dla Ciebie miejscu – na terenie Rząśni i okolic.
                 </p>
-                <div class="mt-4 mb-8 flex items-center justify-center lg:justify-start">
+                <div class="mt-4 mb-8 flex items-center justify-center">
                     <div class="inline-flex items-center bg-green-100 text-green-800 text-sm font-semibold px-4 py-2 rounded-full shadow-sm">
                         <i class="fa-solid fa-car-side mr-2"></i>
                         Dojazd do klienta – bez dodatkowych kosztów!
                     </div>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="tel:+48600872523" class="bg-brand-accent text-white px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center">
                         <i class="fa-solid fa-phone-volume mr-3 text-xl"></i> Umów spotkanie
                     </a>
@@ -168,12 +194,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-        
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[60px] sm:h-[100px]">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.5,187.5,103.81,234.32,90.87,276.32,70.6,321.39,56.44Z" fill="#f9fafb"></path>
-            </svg>
         </div>
     </header>
 
@@ -249,7 +269,7 @@
         </div>
     </section>
 
-    <!-- OFERTA -->
+<!-- OFERTA -->
     <section id="oferta" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16 reveal">
@@ -259,7 +279,9 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
+                
+                <!-- Karta 1 - ZMIANA: dodano cień (shadow-md) i ciemniejszy kontur (border-gray-200) -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
                     <div class="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:bg-brand transition-colors">
                         <i class="fa-solid fa-car text-3xl text-brand group-hover:text-white transition-colors"></i>
                     </div>
@@ -267,7 +289,8 @@
                     <p class="text-gray-600 mb-4">Obowiązkowe OC i dobrowolne AC, NNW oraz Assistance. Znajdziemy najtańszy pakiet chroniący Twój pojazd w każdej sytuacji na drodze.</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
+                <!-- Karta 2 - ZMIANA: dodano cień (shadow-md) i ciemniejszy kontur (border-gray-200) -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
                     <div class="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:bg-brand transition-colors">
                         <i class="fa-solid fa-house-chimney text-3xl text-brand group-hover:text-white transition-colors"></i>
                     </div>
@@ -275,7 +298,8 @@
                     <p class="text-gray-600 mb-4">Ochrona domów i mieszkań przed pożarem, zalaniem, kradzieżą czy zdarzeniami losowymi. Zabezpiecz dorobek swojego życia.</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
+                <!-- Karta 3 - ZMIANA: dodano cień (shadow-md) i ciemniejszy kontur (border-gray-200) -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
                     <div class="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:bg-brand transition-colors">
                         <i class="fa-solid fa-heart-pulse text-3xl text-brand group-hover:text-white transition-colors"></i>
                     </div>
@@ -283,7 +307,8 @@
                     <p class="text-gray-600 mb-4">Zadbaj o przyszłość finansową swoich bliskich. Zabezpiecz spłatę kredytu i otrzymaj wsparcie w razie ciężkiej choroby lub wypadku.</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
+                <!-- Karta 4 - ZMIANA: dodano cień (shadow-md) i ciemniejszy kontur (border-gray-200) -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
                     <div class="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:bg-brand transition-colors">
                         <i class="fa-solid fa-plane-departure text-3xl text-brand group-hover:text-white transition-colors"></i>
                     </div>
@@ -291,7 +316,8 @@
                     <p class="text-gray-600 mb-4">Spokojne wakacje dzięki pokryciu kosztów leczenia za granicą, ochronie bagażu i ratownictwu. Bezstresowy urlop gwarantowany.</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
+                <!-- Karta 5 - ZMIANA: dodano cień (shadow-md) i ciemniejszy kontur (border-gray-200) -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
                     <div class="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:bg-brand transition-colors">
                         <i class="fa-solid fa-user-shield text-3xl text-brand group-hover:text-white transition-colors"></i>
                     </div>
@@ -299,7 +325,8 @@
                     <p class="text-gray-600 mb-4">Ochrona w przypadku, gdy Ty, Twoje dzieci lub zwierzęta nieumyślnie wyrządzą szkodę osobom trzecim. Śpij spokojnie bez obaw o roszczenia.</p>
                 </div>
 
-                <div class="bg-white rounded-2xl p-8 border border-gray-100 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
+                <!-- Karta 6 - ZMIANA: dodano cień (shadow-md) i ciemniejszy kontur (border-gray-200) -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-md hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group reveal">
                     <div class="bg-white w-16 h-16 rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:bg-brand transition-colors">
                         <i class="fa-solid fa-briefcase text-3xl text-brand group-hover:text-white transition-colors"></i>
                     </div>
@@ -311,55 +338,21 @@
     </section>
 
     <!-- TOWARZYSTWA (PARTNERS) -->
-<!-- TOWARZYSTWA (PARTNERS) -->
-    <section id="towarzystwa" class="py-20 bg-gray-50 border-t border-b border-gray-200">
+    <section id="towarzystwa" class="py-16 bg-gray-900 border-t border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-            <h2 class="text-brand font-bold uppercase tracking-widest text-sm mb-2">Partnerzy</h2>
-            <h3 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12">Współpracujemy z zaufanymi towarzystwami</h3>
+            <h3 class="text-xl font-medium text-gray-300 mb-10 uppercase tracking-widest">Współpracujemy z najlepszymi towarzystwami</h3>
             
-            <!-- Siatka z logotypami -->
-            <div class="flex flex-wrap justify-center items-center gap-8">
-                
-                <!-- Logo Warta -->
-                <div class="bg-white rounded-lg p-4 flex items-center justify-center h-24 w-40 shadow-sm hover:shadow-lg transition-all">
-                    <img src="logos/warta.png" alt="Logo Warta" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                </div>
-                
-                <!-- Logo PZU -->
-                <div class="bg-white rounded-lg p-4 flex items-center justify-center h-24 w-40 shadow-sm hover:shadow-lg transition-all">
-                    <img src="logos/pzu.png" alt="Logo PZU" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                </div>
-
-                <!-- Logo Allianz -->
-                <div class="bg-white rounded-lg p-4 flex items-center justify-center h-24 w-40 shadow-sm hover:shadow-lg transition-all">
-                    <img src="logos/allianz.png" alt="Logo Allianz" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                </div>
-
-                <!-- Logo Generali -->
-                <div class="bg-white rounded-lg p-4 flex items-center justify-center h-24 w-40 shadow-sm hover:shadow-lg transition-all">
-                    <img src="logos/generali.png" alt="Logo Generali" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                </div>
-
-                <!-- Logo UNIQA -->
-                <div class="bg-white rounded-lg p-4 flex items-center justify-center h-24 w-40 shadow-sm hover:shadow-lg transition-all">
-                    <img src="logos/uniqa.png" alt="Logo UNIQA" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                </div>
-
-                <!-- Logo HDI -->
-                <div class="bg-white rounded-lg p-4 flex items-center justify-center h-24 w-40 shadow-sm hover:shadow-lg transition-all">
-                    <img src="logos/hdi.png" alt="Logo HDI" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                </div>
-
-                <!-- Logo InterRisk -->
-                <div class="bg-white rounded-lg p-4 flex items-center justify-center h-24 w-40 shadow-sm hover:shadow-lg transition-all">
-                    <img src="logos/interrisk.png" alt="Logo InterRisk" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                </div>
-
-                <!-- Logo TUZ -->
-                <div class="bg-white rounded-lg p-4 flex items-center justify-center h-24 w-40 shadow-sm hover:shadow-lg transition-all">
-                    <img src="logos/tuz.png" alt="Logo TUZ Ubezpieczenia" class="max-h-full max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                </div>
-
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">Warta</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">PZU</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">Allianz</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">Generali</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">UNIQA</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">HDI</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">Wiener</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">InterRisk</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">Compensa</div>
+                <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">TUZ</div>
             </div>
         </div>
     </section>
@@ -433,7 +426,7 @@
                 <p class="text-gray-600 text-lg">Zadzwoń, napisz lub odwiedź biuro. Pamiętaj, że możemy też dojechać do Ciebie!</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-3xl shadow-xl overflow-hidden reveal">
+            <div id="formularz-kontaktowy" class="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-3xl shadow-xl overflow-hidden reveal">
                 
                 <!-- Lewa kolumna: Dane kontaktowe i Mapa -->
                 <div class="bg-brand-dark p-8 sm:p-12 text-white relative overflow-hidden">
@@ -454,7 +447,7 @@
 
                         <!-- Mapa Google (Nowa lokalizacja) -->
                         <div class="relative z-10">
-                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2479.798150766184!2d19.06013331577232!3d51.27214997959728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471a5b5a2e558c89%3A0x6b1f2e4e1f7a0b84!2sTadeusza%20Ko%C5%9Bciuszki%202%2C%2098-332%20Rz%C4%85%C5%9Bnia!5e0!3m2!1spl!2spl!4v1672589000000!5m2!1spl!2spl" 
+                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d343.4210121191619!2d19.054558933368323!3d51.2195031474763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2spl!4v1777405511137!5m2!1sen!2spl" 
                                 class="w-full h-56 rounded-xl border-2 border-white/20 shadow-lg" 
                                 style="border:0;" 
                                 allowfullscreen="" 
@@ -599,8 +592,15 @@
             </div>
         </div>
     </footer>
-
-    <!-- SKRYPTY GŁÓWNE -->
+<!-- Pływający przycisk kontaktu (FAB) -->
+    <a href="#formularz-kontaktowy" id="floating-btn" class="fixed bottom-8 right-8 z-50 bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-4 rounded-full shadow-lg hover:shadow-2xl flex items-center
+        opacity-0 translate-y-8 pointer-events-none transform hover:scale-110 transition-all duration-500 ease-in-out">
+        <i class="fa-solid fa-envelope text-xl"></i>
+        <span class="ml-3 font-semibold hidden sm:inline">Szybki kontakt</span>
+    </a>
+</body>
+</html>
+<!-- SKRYPTY GŁÓWNE -->
     <script>
         // 1. Ustawienie roku
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -614,7 +614,6 @@
                 menu.classList.toggle('hidden');
             });
             
-            // Automatyczne zamykanie menu mobilnego po kliknięciu w dowolny link
             const mobileLinks = menu.querySelectorAll('a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
@@ -623,21 +622,19 @@
             });
         }
 
-        // 3. Efekt cienia pod menu podczas scrollowania w dół
+        // 3. Efekt cienia pod menu podczas scrollowania
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 10) {
                 navbar.classList.add('shadow-md');
-                navbar.classList.replace('py-4', 'py-0');
             } else {
                 navbar.classList.remove('shadow-md');
             }
         });
 
-        // 4. Animacje pojawiania się elementów tylko dla komputerów (>768px)
+        // 4. Animacje pojawiania się elementów na desktopie
         if (window.innerWidth >= 768 && 'IntersectionObserver' in window) {
             const revealElements = document.querySelectorAll('.reveal');
-            
             const observer = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -646,9 +643,44 @@
                     }
                 });
             }, { threshold: 0.1 });
-
             revealElements.forEach(el => observer.observe(el));
         }
+
+        // 5. Obsługa pływającego przycisku (płynne pojawianie się i scroll)
+        const floatingBtn = document.getElementById('floating-btn');
+
+        if(floatingBtn) {
+            // Logika płynnego pojawiania się i znikania
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > window.innerHeight * 0.8) { // Pokaż po przewinięciu 80% ekranu
+                    floatingBtn.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
+                    floatingBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                } else {
+                    floatingBtn.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
+                    floatingBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                }
+            });
+
+            // Logika płynnego przewijania do formularza
+            floatingBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // Zapobiegamy domyślnemu "skokowi"
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement) {
+                    const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
     </script>
+</body>
+</html>
+    </script>
+
 </body>
 </html>
