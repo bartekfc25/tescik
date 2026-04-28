@@ -91,7 +91,7 @@
         }
         /* NOWA REGUŁA: Wymusza wysokość sekcji Hero na 100% okna przeglądarki */
         #top {
-            height: 100vh;
+            height: 110vh;
         }
         /* NOWA ANIMACJA: Animowane podkreślenie dla linków w nawigacji */
         .nav-link {
@@ -125,7 +125,6 @@
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo -->
                 <a href="#top" class="flex-shrink-0 flex items-center cursor-pointer">
-                    <!-- POPRAWKA: Upewniamy się, że ścieżka do logo jest prawidłowa -->
                     <img src="favicon.png" alt="Logo Ubezpieczenia Marcin Baran" class="h-10 mr-3">
                     <div class="flex flex-col">
                         <span class="font-heading font-bold text-xl text-brand-dark leading-tight">Marcin Baran</span>
@@ -133,18 +132,20 @@
                     </div>
                 </a>
 
-                <!-- Desktop Menu -->
+                <!-- Desktop Menu (zmieniona kolejność) -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#o-firmie" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">O firmie</a>
                     <a href="#jak-dzialamy" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Jak działamy?</a>
                     <a href="#oferta" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Oferta</a>
                     <a href="#dlaczego-my" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Dlaczego my</a>
+                    <a href="#towarzystwa" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Partnerzy</a>
                     <a href="#kontakt" class="nav-link text-gray-600 hover:text-brand font-medium transition-colors">Kontakt</a>
                     
                     <a href="tel:+48600872523" class="flex items-center bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-2.5 rounded-full font-semibold transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                         <i class="fa-solid fa-phone mr-2"></i> Zadzwoń
                     </a>
                 </div>
+
                 <!-- Przycisk menu mobilnego -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand focus:outline-none p-2">
@@ -153,6 +154,19 @@
                 </div>
             </div>
         </div>
+
+        <!-- Rozwijane Menu Mobilne (zmieniona kolejność) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#o-firmie" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-brand rounded-md">O firmie</a>
+                <a href="#jak-dzialamy" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-brand rounded-md">Jak działamy?</a>
+                <a href="#oferta" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-brand rounded-md">Oferta</a>
+                <a href="#dlaczego-my" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-brand rounded-md">Dlaczego my</a>
+                <a href="#towarzystwa" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-brand rounded-md">Partnerzy</a>
+                <a href="#kontakt" class="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-brand rounded-md">Kontakt</a>
+            </div>
+        </div>
+    </nav>
 
         <!-- Rozwijane Menu Mobilne -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
@@ -167,15 +181,22 @@
     </nav>
 
 <!-- HERO SECTION -->
-    <header id="top" class="hero-bg h-screen flex items-center justify-center relative pt-20 text-center">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="animate-hero">
+    <header id="top" class="hero-bg relative">
+        <!-- ZMIANA: Usunięto flex/items-center i dodano stały padding od góry (pt-32), aby przesunąć treść BARDZO BLISKO MENU -->
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-24">
+            
+            <div class="animate-hero text-center">
                 <span class="inline-block py-2 px-5 rounded-full text-blue-100 font-semibold text-base mb-6 border border-blue-400/60 shadow-sm" style="background-color: rgba(29, 78, 216, 0.5);">
                     Mobilny Agent Ubezpieczeniowy
                 </span>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-white leading-tight mb-6">
                     Ubezpieczenia bez wychodzenia z domu.<br><span class="text-brand-accent">Dojedziemy do Ciebie!</span>
                 </h1>
+
+                <p class="text-lg text-blue-200 font-medium mb-6">
+                    Darmowa wycena &bull; Oddzwaniamy nawet w 15 minut &bull; Bez zobowiązań
+                </p>
+                
                 <p class="text-lg sm:text-xl text-gray-200 mb-6 font-light max-w-2xl mx-auto">
                     Oszczędzaj swój cenny czas. Porównamy dla Ciebie oferty kilkunastu towarzystw i załatwimy formalności w dogodnym dla Ciebie miejscu – na terenie Rząśni i okolic.
                 </p>
@@ -196,29 +217,38 @@
             </div>
         </div>
     </header>
-
     <!-- O FIRMIE -->
     <section id="o-firmie" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row items-center gap-12">
                 <div class="lg:w-1/2 reveal">
-                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agent ubezpieczeniowy w biurze" class="rounded-2xl shadow-2xl border-4 border-white">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agent ubezpieczeniowy Marcin Baran w biurze" class="rounded-2xl shadow-2xl border-4 border-white">
                 </div>
                 <div class="lg:w-1/2 reveal">
                     <h2 class="text-brand font-bold uppercase tracking-widest text-sm mb-2">O nas</h2>
                     <h3 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6">Lokalny partner, który dojeżdża do Ciebie</h3>
-                    <p class="text-gray-600 mb-4 text-lg leading-relaxed">
-                        Nazywam się Marcin Baran. Jako mobilny agent ubezpieczeniowy, specjalizuję się w obsłudze klientów na terenie Rząśni i okolic. Moim celem jest zapewnienie Ci maksymalnej wygody – to ja przyjeżdżam do Ciebie.
-                    </p>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">
-                        Dzięki współpracy z ponad 20 towarzystwami, porównuję i dobieram ubezpieczenia z dojazdem do klienta, idealnie dopasowane do Twoich potrzeb i budżetu. Konkretnie, uczciwie i bez wychodzenia z domu.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    
+                    <div class="space-y-4 text-lg text-gray-600 leading-relaxed">
+                        <p>
+                            Nazywam się Marcin Baran i jako mobilny agent ubezpieczeniowy obsługuję klientów na terenie Rząśni i okolic.
+                        </p>
+                        <p>
+                            Przyjeżdżam do Ciebie – do domu lub firmy – żebyś nie tracił czasu i nie przepłacał za ubezpieczenie.
+                        </p>
+                        <p class="font-medium text-gray-800 !mt-6">
+                            Od ponad 20 lat pomagam klientom znaleźć ubezpieczenia, które naprawdę się opłacają.
+                        </p>
+                        <p>
+                            Współpracuję z wieloma towarzystwami, dzięki czemu porównuję oferty i wybieram najlepszą opcję dopasowaną do Twoich potrzeb i budżetu. Konkretnie, uczciwie i bez zbędnych formalności.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
                         <div class="flex items-center">
                             <div class="p-3 rounded-lg text-brand mr-4" style="background-color: rgba(29, 78, 216, 0.1);">
                                 <i class="fa-solid fa-handshake text-xl"></i>
                             </div>
-                            <span class="font-semibold text-gray-800">Uczciwe doradztwo</span>
+                            <span class="font-semibold text-gray-800">Ponad 20 lat doświadczenia</span>
                         </div>
                         <div class="flex items-center">
                             <div class="p-3 rounded-lg text-brand mr-4" style="background-color: rgba(29, 78, 216, 0.1);">
@@ -337,10 +367,65 @@
         </div>
     </section>
 
-    <!-- TOWARZYSTWA (PARTNERS) -->
+<!-- DLACZEGO MY (nowa pozycja) -->
+    <section id="dlaczego-my" class="py-20 bg-brand text-white overflow-hidden relative">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h2 class="text-blue-200 font-bold uppercase tracking-widest text-sm mb-2">Korzyści</h2>
+                <h3 class="text-3xl md:text-4xl font-heading font-bold mb-4">Dlaczego warto wybrać naszą agencję?</h3>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
+                
+                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
+                        <i class="fa-solid fa-car-on text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Mobilny agent u Ciebie</h4>
+                    <p class="text-gray-600">Twój czas jest cenny. Dojeżdżamy do domu lub firmy, by załatwić wszystkie formalności na miejscu.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
+                        <i class="fa-solid fa-layer-group text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Wiele ofert w jednym miejscu</h4>
+                    <p class="text-gray-600">Nie musisz dzwonić do kilku firm. Porównamy rynek za Ciebie i przedstawimy najlepsze opcje.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
+                        <i class="fa-solid fa-stopwatch text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Oszczędność czasu i pieniędzy</h4>
+                    <p class="text-gray-600">Szybka kalkulacja i gwarancja wyboru polisy, za którą nie przepłacisz.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
+                        <i class="fa-solid fa-sliders text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Indywidualne dopasowanie</h4>
+                    <p class="text-gray-600">Zadajemy właściwe pytania, aby polisa chroniła to, co dla Ciebie najważniejsze.</p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
+                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
+                        <i class="fa-solid fa-comments text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Szybki i lokalny kontakt</h4>
+                    <p class="text-gray-600">Znasz nas. Jesteśmy w Rząśni. W razie szkody wiesz, do kogo zadzwonić po pomoc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOWARZYSTWA (PARTNERS) (przywrócona ciemna wersja tekstowa) -->
     <section id="towarzystwa" class="py-16 bg-gray-900 border-t border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center reveal">
-            <h3 class="text-xl font-medium text-gray-300 mb-10 uppercase tracking-widest">Współpracujemy z najlepszymi towarzystwami</h3>
+            <h3 class="text-xl font-medium text-gray-300 mb-10 uppercase tracking-widest">Współpracujemy z wieloma sprawdzonymi towarzystwami – wybieramy najlepszą ofertę dla Ciebie</h3>
             
             <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
                 <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">Warta</div>
@@ -353,67 +438,6 @@
                 <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">InterRisk</div>
                 <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">Compensa</div>
                 <div class="bg-gray-800 text-gray-300 px-6 py-4 rounded-lg border border-gray-700 font-bold text-lg">TUZ</div>
-            </div>
-        </div>
-    </section>
-
-<!-- DLACZEGO MY -->
-    <section id="dlaczego-my" class="py-20 bg-brand text-white overflow-hidden relative">
-        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 30px 30px;"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-blue-200 font-bold uppercase tracking-widest text-sm mb-2">Korzyści</h2>
-                <h3 class="text-3xl md:text-4xl font-heading font-bold mb-4">Dlaczego warto wybrać naszą agencję?</h3>
-            </div>
-
-            <!-- ZMIANA: Zastąpiono grid na flexbox, aby naturalnie wyśrodkować ostatni wiersz -->
-            <div class="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
-                
-                <!-- Karta 1 -->
-                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
-                        <i class="fa-solid fa-car-on text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Mobilny agent u Ciebie</h4>
-                    <p class="text-gray-600">Twój czas jest cenny. Dojeżdżamy do domu lub firmy, by załatwić wszystkie formalności na miejscu.</p>
-                </div>
-
-                <!-- Karta 2 -->
-                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
-                        <i class="fa-solid fa-layer-group text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Wiele ofert w jednym miejscu</h4>
-                    <p class="text-gray-600">Nie musisz dzwonić do kilku firm. Porównamy rynek za Ciebie i przedstawimy najlepsze opcje.</p>
-                </div>
-
-                <!-- Karta 3 -->
-                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
-                        <i class="fa-solid fa-stopwatch text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Oszczędność czasu i pieniędzy</h4>
-                    <p class="text-gray-600">Szybka kalkulacja i gwarancja wyboru polisy, za którą nie przepłacisz.</p>
-                </div>
-
-                <!-- Karta 4 (już w nowym, wyśrodkowanym wierszu) -->
-                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
-                        <i class="fa-solid fa-sliders text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Indywidualne dopasowanie</h4>
-                    <p class="text-gray-600">Zadajemy właściwe pytania, aby polisa chroniła to, co dla Ciebie najważniejsze.</p>
-                </div>
-
-                <!-- Karta 5 (już w nowym, wyśrodkowanym wierszu) -->
-                <div class="glass-card rounded-2xl p-8 text-center reveal w-full sm:w-2/5 lg:w-[30%]">
-                    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full text-brand mb-6" style="background-color: rgba(29, 78, 216, 0.1);">
-                        <i class="fa-solid fa-comments text-2xl"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-gray-900 mb-2 font-heading">Szybki i lokalny kontakt</h4>
-                    <p class="text-gray-600">Znasz nas. Jesteśmy w Rząśni. W razie szkody wiesz, do kogo zadzwonić po pomoc.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -506,7 +530,7 @@
 
                 <!-- Prawa kolumna: Formularz -->
                 <div class="p-8 sm:p-12">
-                    <h4 class="text-2xl font-bold text-gray-900 font-heading mb-6">Poproś o kontakt - oddzwonimy w ciągu 15 minut</h4>
+                    <h4 class="text-2xl font-bold text-gray-900 font-heading mb-6">Poproś o kontakt - oddzwonimy w ciągu 15 minut i przygotujemy dla Ciebie najlepszą ofertę</h4>
                     <form action="https://formsubmit.co/ubezpieczenia.rzasnia@onet.pl" method="POST" class="space-y-6">
                         <input type="hidden" name="_subject" value="Nowe zapytanie ze strony internetowej!">
                         <input type="hidden" name="_captcha" value="false">
