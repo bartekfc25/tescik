@@ -645,14 +645,14 @@
             </div>
         </div>
     </footer>
-<!-- Pływający przycisk kontaktu (FAB) -->
-    <a href="#formularz-kontaktowy" id="floating-btn" class="fixed bottom-8 right-8 z-50 bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-4 rounded-full shadow-lg hover:shadow-2xl flex items-center
+<!-- Pływający przycisk kontaktu (FAB) - widoczny tylko na desktopie -->
+    <a href="#formularz-kontaktowy" id="floating-btn" class="fixed bottom-8 right-8 z-50 bg-brand-accent hover:bg-brand-accentHover text-white px-5 py-4 rounded-full shadow-lg hover:shadow-2xl hidden md:flex items-center
         opacity-0 translate-y-8 pointer-events-none transform hover:scale-110 transition-all duration-500 ease-in-out">
         <i class="fa-solid fa-envelope text-xl"></i>
-        <span class="ml-3 font-semibold hidden sm:inline">Szybki kontakt</span>
+        <span class="ml-3 font-semibold">Szybki kontakt</span>
     </a>
-<!-- Pływający przycisk do dzwonienia (tylko na mobile) -->
-    <a href="tel:+48600872523" id="mobile-call-fab" class="fixed bottom-8 right-8 z-50 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center md:hidden transition-all duration-300 ease-in-out transform hover:scale-110
+<!-- Pływający przycisk do dzwonienia (FAB) - widoczny tylko na mobile -->
+    <a href="tel:+48600872523" id="mobile-call-fab" class="fixed bottom-8 left-8 z-50 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center md:hidden transition-all duration-300 ease-in-out transform hover:scale-110
         opacity-0 translate-y-8 pointer-events-none">
         <i class="fa-solid fa-phone text-2xl"></i>
     </a>
@@ -704,41 +704,36 @@
             revealElements.forEach(el => observer.observe(el));
         }
 
-        // 5. Obsługa pływającego przycisku (płynne pojawianie się i scroll)
+        // 5. Obsługa pływającego przycisku "Szybki kontakt" (tylko na desktopie)
         const floatingBtn = document.getElementById('floating-btn');
 
-        if(floatingBtn) {
-            // Logika płynnego pojawiania się i znikania
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > window.innerHeight * 0.3) { // Pokaż po przewinięciu 50% ekranu
-                    floatingBtn.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
-                    floatingBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                } else {
-                    floatingBtn.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
-                    floatingBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
-                }
-            });
+        if (floatingBtn && window.innerWidth >= 768) { // Tylko na desktopie
+            if(floatingBtn) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > window.innerHeight * 0.3) { // Pokaż po przewinięciu 30% ekranu
+                        floatingBtn.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
+                        floatingBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                    } else {
+                        floatingBtn.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
+                        floatingBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                    }
+                });
 
-            // Logika płynnego przewijania do formularza
-            floatingBtn.addEventListener('click', function(e) {
-                e.preventDefault(); // Zapobiegamy domyślnemu "skokowi"
-                const targetElement = document.querySelector(this.getAttribute('href'));
-                if(targetElement) {
-                    const navbarHeight = navbar ? navbar.offsetHeight : 80;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
+                floatingBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(this.getAttribute('href'));
+                    if(targetElement) {
+                        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+                        const offsetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                });
+            }
         }
 
         // 6. Obsługa pływającego przycisku do dzwonienia (tylko na mobile)
-        const mobileCallFab = document.getElementById('mobile-call-fab');
-        if (mobileCallFab) {
+        const mobileCallFab = document.getElementById('mobile-call-fab'); // Ten przycisk ma już klasę md:hidden
+        if (mobileCallFab && window.innerWidth < 768) { // Tylko na mobile
             window.addEventListener('scroll', () => {
                 if (window.scrollY > window.innerHeight * 0.3) { // Pokaż po przewinięciu 30% ekranu
                     mobileCallFab.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
