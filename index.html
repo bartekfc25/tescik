@@ -406,6 +406,16 @@
                     <p class="text-gray-600">Znasz nas. Jesteśmy w Rząśni. W razie szkody wiesz, do kogo zadzwonić po pomoc.</p>
                 </div>
             </div>
+            
+            <!-- NOWY TEKST CTA POD KAFELKAMI -->
+            <div class="text-center mt-16 reveal">
+                <p class="text-3xl md:text-4xl font-heading font-bold text-white leading-tight mb-8">
+                    Nie czekaj – <span class="text-brand-accent">sprawdź swoją ofertę</span> teraz!
+                </p>
+                <a href="#kontakt" class="inline-flex items-center bg-brand-accent hover:bg-brand-accentHover text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-arrow-right mr-3 text-xl"></i> Przejdź do kontaktu
+                </a>
+            </div>
         </div>
     </section>
 
@@ -618,6 +628,11 @@
         <i class="fa-solid fa-envelope text-xl"></i>
         <span class="ml-3 font-semibold hidden sm:inline">Szybki kontakt</span>
     </a>
+<!-- Pływający przycisk do dzwonienia (tylko na mobile) -->
+    <a href="tel:+48600872523" id="mobile-call-fab" class="fixed bottom-8 left-8 z-50 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-lg hover:shadow-xl flex items-center justify-center md:hidden transition-all duration-300 ease-in-out transform hover:scale-110
+        opacity-0 translate-y-8 pointer-events-none">
+        <i class="fa-solid fa-phone text-2xl"></i>
+    </a>
 </body>
 </html>
 <!-- SKRYPTY GŁÓWNE -->
@@ -697,6 +712,21 @@
                 }
             });
         }
+
+        // 6. Obsługa pływającego przycisku do dzwonienia (tylko na mobile)
+        const mobileCallFab = document.getElementById('mobile-call-fab');
+        if (mobileCallFab) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > window.innerHeight * 0.3) { // Pokaż po przewinięciu 30% ekranu
+                    mobileCallFab.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
+                    mobileCallFab.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                } else {
+                    mobileCallFab.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
+                    mobileCallFab.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                }
+            });
+        }
+
     </script>
 </body>
 </html>
