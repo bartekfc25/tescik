@@ -46,8 +46,6 @@
     }
 }
 
-#top { height: 110vh; }
-
 .nav-link { position: relative; padding-bottom: 6px; }
 .nav-link::after {
     content: '';

@@ -689,9 +689,6 @@
   .pt-2 {
     padding-top: calc(var(--spacing) * 2);
   }
-  .pt-28 {
-    padding-top: calc(var(--spacing) * 28);
-  }
   .pt-32 {
     padding-top: calc(var(--spacing) * 32);
   }
@@ -706,9 +703,6 @@
   }
   .pb-8 {
     padding-bottom: calc(var(--spacing) * 8);
-  }
-  .pb-16 {
-    padding-bottom: calc(var(--spacing) * 16);
   }
   .pb-32 {
     padding-bottom: calc(var(--spacing) * 32);
@@ -1148,11 +1142,6 @@
       justify-content: center;
     }
   }
-  .md\:pt-32 {
-    @media (width >= 48rem) {
-      padding-top: calc(var(--spacing) * 32);
-    }
-  }
   .md\:pb-16 {
     @media (width >= 48rem) {
       padding-bottom: calc(var(--spacing) * 16);
@@ -1246,9 +1235,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-#top {
-  height: 110vh;
 }
 .nav-link {
   position: relative;
